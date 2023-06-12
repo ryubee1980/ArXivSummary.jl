@@ -4,6 +4,8 @@ authors = ["ryubee1980 <ryubee@gmail.com> and contributors"]
 version = "1.0.0-DEV"
 
 [deps]
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+LightXML = "9c8b4983-aa76-5018-a973-4c85ecc9e179"
 OpenAI = "e9f21f70-7185-4079-aca2-91159181367c"
 
 [compat]
