@@ -4,6 +4,7 @@ module ArXivSummary
 using OpenAI
 using HTTP:request
 using LightXML
+using Dates
 # Write your package code here.
 
 
@@ -53,29 +54,6 @@ function extract_data(entries_element)
     title,authors[1:end-3],summary,id,date
 end
 
-
-function main(;max=2)
-    entries=getArXiv(max=max)
-    num=length(entries)
-    title=Array{String}(undef,num)
-    authors=similar(title)
-    summary=similar(title)
-    id=similar(title)
-    gpt=similar(title)
-    date=similar(title)
-    for i in 1:num
-        title[i],authors[i],summary[i],id[i],date[i]=extract_data(entries[i])
-        #gpt[i]=getGPT(title[i],summary[i])
-        println(date[i])
-        println(title[i])
-        println(authors[i])
-        #println(summary[i])
-        #println(gpt[i])
-        println(id[i])
-    end
-    
-end
-
 function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
 
     fn=open(KEY)
@@ -96,6 +74,42 @@ function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
     r.response[:choices][begin][:message][:content]
    
     #typeof(r.response[:choices][begin][:message][:content])
+end
+
+
+function main(;max=2)
+    entries=getArXiv(max=max)
+    num=length(entries)
+    title=Array{String}(undef,num)
+    authors=similar(title)
+    summary=similar(title)
+    id=similar(title)
+    gpt=similar(title)
+    date=similar(title)
+    for i in 1:num
+        title[i],authors[i],summary[i],id[i],date[i]=extract_data(entries[i])
+        gpt[i]=getGPT(title[i],summary[i])
+        println(date[i])
+        println(title[i])
+        println(authors[i])
+        #println(summary[i])
+        println(gpt[i])
+        println(id[i])
+    end
+    [date title authors gpt id]
+end
+
+function write_result(list)
+    num=length(list[:,1])
+    date=today()
+    fn=open("$(date).txt","w")
+    for i in 1:num
+        for j in 1:5
+            println(fn,list[i,j])
+        end  
+        println(fn,"\n -------------------------------------------------------------------------------\n")
+    end
+    close(fn)
 end
 
 
