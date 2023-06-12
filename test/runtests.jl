@@ -2,5 +2,5 @@ using ArXivSummary
 using Test
 
 @testset "ArXivSummary.jl" begin
-    # Write your tests here.
+    ArXivSummary.main() |> ArXivSummary.write_result 
 end
