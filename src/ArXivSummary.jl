@@ -89,12 +89,12 @@ function main(;max=2)
     for i in 1:num
         title[i],authors[i],summary[i],id[i],date[i]=extract_data(entries[i])
         gpt[i]=getGPT(title[i],summary[i])
-        println(date[i])
-        println(title[i])
-        println(authors[i])
+        #println(date[i])
+        #println(title[i])
+        #println(authors[i])
         #println(summary[i])
-        println(gpt[i])
-        println(id[i])
+        #println(gpt[i])
+        #println(id[i])
     end
     [date title authors gpt id]
 end
