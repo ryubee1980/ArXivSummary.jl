@@ -3,6 +3,9 @@ uuid = "e1c43275-bdd5-4799-b910-833cf819c583"
 authors = ["ryubee1980 <ryubee@gmail.com> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+OpenAI = "e9f21f70-7185-4079-aca2-91159181367c"
+
 [compat]
 julia = "1"
 
