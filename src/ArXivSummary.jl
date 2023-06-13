@@ -46,7 +46,7 @@ function extract_data(entries_element)
     id*=content(ext[1])
 
     ext=get_elements_by_tagname(entries_element,"published")
-    date="Date:"
+    date="1st Publication Date:"
     date*=content(ext[1])
 
     title,authors[1:end-3],summary,id,date
@@ -106,9 +106,9 @@ function write_result(list)
         mkdir("$(year)")
     end
     fn=open("./$(year)/$(month).txt","a")
-    println(fn,"***********************")
+    println(fn,"************************")
     println(fn,"* 取得年月日: $(date) *")
-    println(fn,"***********************")
+    println(fn,"************************")
     println(fn,"\n\n") 
     for i in 1:num
         for j in 1:5
