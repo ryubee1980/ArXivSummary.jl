@@ -13,9 +13,7 @@ function getArXiv(;max=2)
     # Here, "+", "%28", and "%29" respectively denote the space " ", left parentheses "(", and right parentheses ")" in the url format.
     MAX_PAPER_COUNT = max
     ARXIV_API_URL = "http://export.arxiv.org/api/query"
-    ARXIV_TERM = 3
-
-    #url = "$(ARXIV_API_URL)?search_query=$(ARXIV_QUERY)&sortBy=lastUpdatedDate&sortOrder=descending&max_results=$(MAX_PAPER_COUNT)&start=0&submitted_date[from]=${toYYYYMMDD(date)}&submitted_date[to]=${toYYYYMMDD(date)}"
+    
 
     url = "$(ARXIV_API_URL)?search_query=$(ARXIV_QUERY)&sortBy=lastUpdatedDate&max_results=$(MAX_PAPER_COUNT)"
 
