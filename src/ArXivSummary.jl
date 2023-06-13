@@ -101,8 +101,12 @@ end
 
 function write_result(list)
     num=length(list[:,1])
-    date=today()
-    fn=open("$(date).txt","w")
+    month=Dates.format(now(),"mm")
+    year=Dates.format(now(),"yyyy")
+    if !isdir("$(year)")
+        mkdir("$(year)")
+    end
+    fn=open("./$(year)/$(month).txt","a")
     for i in 1:num
         for j in 1:5
             println(fn,list[i,j])
