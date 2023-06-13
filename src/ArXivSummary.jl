@@ -103,10 +103,15 @@ function write_result(list)
     num=length(list[:,1])
     month=Dates.format(now(),"mm")
     year=Dates.format(now(),"yyyy")
+    date=today()
     if !isdir("$(year)")
         mkdir("$(year)")
     end
     fn=open("./$(year)/$(month).txt","a")
+    println(fn,"***********************")
+    println(fn,"* 取得年月日: $(date) *")
+    println(fn,"***********************")
+    println(fn,"\n\n") 
     for i in 1:num
         for j in 1:5
             println(fn,list[i,j])
