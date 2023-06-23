@@ -111,10 +111,14 @@ function write_result(list)
     println(fn,"************************")
     println(fn,"\n\n") 
     for i in 1:num
-        for j in 1:5
+        for j in 1:3
             println(fn,list[i,j])
         end  
-        println(fn,"\n -------------------------------------------------------------------------------\n\n")
+        println(fn,"\n")
+        println(fn,list[i,4])
+        println(fn,"\n")
+        println(fn,list[i,5])
+        println(fn,"\n-------------------------------------------------------------------------------\n\n")
     end
     close(fn)
 end
