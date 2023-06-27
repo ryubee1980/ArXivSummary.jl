@@ -79,8 +79,8 @@ function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
 end
 
 
-function main(;max=2)
-    entries=getArXiv(max=max)
+function main(;max=2,query="query_ion.txt")
+    entries=getArXiv(max=max,query=query)
     num=length(entries)
     title=Array{String}(undef,num)
     authors=similar(title)
@@ -102,7 +102,7 @@ function main(;max=2)
     [date title authors gpt id]
 end
 
-function write_result(list)
+function write_result(list;file="Ion")
     num=length(list[:,1])
     month=Dates.format(now(),"mm")
     year=Dates.format(now(),"yyyy")
@@ -110,7 +110,7 @@ function write_result(list)
     if !isdir("$(year)")
         mkdir("$(year)")
     end
-    fn=open("./$(year)/$(month).txt","a")
+    fn=open("./$(year)/$(file)$(month).txt","a")
     println(fn,"************************")
     println(fn,"* 取得年月日: $(date) *")
     println(fn,"************************")
