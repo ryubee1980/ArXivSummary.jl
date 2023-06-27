@@ -8,8 +8,12 @@ using Dates
 # Write your package code here.
 
 
-function getArXiv(;max=2)
-    ARXIV_QUERY = "%28cat:cond-mat.soft+OR+cat:cond-mat.stat-mech+OR+cat:physics.chem-ph%29+AND+%28ti:ion+OR+ti:salt+OR+ti:electrolyte+OR+abs:ion+OR+abs:salt+OR+abs:electrolyte%29"
+function getArXiv(;max=2,query="query_ion.txt")
+    fn=open(query)
+        
+    line=readline(fn)
+
+    ARXIV_QUERY = line
     # Here, "+", "%28", and "%29" respectively denote the space " ", left parentheses "(", and right parentheses ")" in the url format.
     MAX_PAPER_COUNT = max
     ARXIV_API_URL = "http://export.arxiv.org/api/query"
