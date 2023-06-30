@@ -9,10 +9,11 @@ using Dates
 
 
 function getArXiv(;max=2,query="query_ion.txt")
-    fn=open(query)
+    fn=open(query,"r")
         
     line=readline(fn)
 
+    close(fn)
     ARXIV_QUERY = line
     # Here, "+", "%28", and "%29" respectively denote the space " ", left parentheses "(", and right parentheses ")" in the url format.
     MAX_PAPER_COUNT = max
@@ -58,9 +59,11 @@ end
 
 function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
 
-    fn=open(KEY)
+    fn=open(KEY,"r")
         
     line=readline(fn)
+
+    close(fn)
 
     
     secret_key=line
