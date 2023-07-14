@@ -82,7 +82,7 @@ function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
 end
 
 
-function main(;max=2,query="query_ion.txt",sleep=4)
+function main(;max=2,query="query_ion.txt",T_int=4)
     entries=getArXiv(max=max,query=query)
     num=length(entries)
     title=Array{String}(undef,num)
@@ -94,7 +94,7 @@ function main(;max=2,query="query_ion.txt",sleep=4)
     for i in 1:num
         title[i],authors[i],summary[i],id[i],date[i]=extract_data(entries[i])
         gpt[i]=getGPT(title[i],summary[i])
-        sleep(sleep)
+        sleep(T_int)
         #println(date[i])
         #println(title[i])
         #println(authors[i])
