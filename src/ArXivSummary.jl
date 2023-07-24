@@ -105,7 +105,7 @@ function main(;max=2,query="query_ion.txt",T_int=4)
     [date title authors gpt id]
 end
 
-function write_result(list;file="Ion")
+function write_result(list;file="Ion",output_latest=="yes")
     num=length(list[:,1])
     month=Dates.format(now(),"mm")
     year=Dates.format(now(),"yyyy")
@@ -130,7 +130,7 @@ function write_result(list;file="Ion")
     end
     close(fn)
 
-    #= if output_latest=="yes"
+    if output_latest=="yes"
         fn=open("./$(file)_latest.txt","w")
         println(fn,"************************")
         println(fn,"*    LATEST        *")
@@ -148,5 +148,6 @@ function write_result(list;file="Ion")
             println(fn,"\n-------------------------------------------------------------------------------\n\n")
         end
         close(fn)
-    end =#
+    end
+end
 end
