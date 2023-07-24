@@ -133,7 +133,7 @@ function write_result(list;file="Ion",out_latest=1)
     if out_latest==1
         fn=open("./$(file)_latest.txt","w")
         println(fn,"************************")
-        println(fn,"*    LATEST!        *")
+        println(fn,"*    LATEST        *")
         println(fn,"* 取得年月日: $(date) *")
         println(fn,"************************")
         println(fn,"\n\n") 
