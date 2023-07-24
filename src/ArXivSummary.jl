@@ -129,7 +129,4 @@ function write_result(list;file="Ion",output_latest="yes")
         println(fn,"\n-------------------------------------------------------------------------------\n\n")
     end
     close(fn)
-
-    
-
 end
