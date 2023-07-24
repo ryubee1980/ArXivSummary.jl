@@ -150,4 +150,5 @@ function write_result(list;file="Ion",output_latest=="yes")
         close(fn)
     end
 end
+
 end
