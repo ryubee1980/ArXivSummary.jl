@@ -131,7 +131,10 @@ function write_result(list;file="Ion",output_latest="yes")
     close(fn)
 
     if output_latest=="yes"
-        fn=open("./$(file)_latest.txt","w")
+        if !isdir("latest")
+            mkdir("latest")
+        end
+        fn=open("./latest/$(file)_latest.txt","w")
         println(fn,"************************")
         println(fn,"*    LATEST        *")
         println(fn,"* 取得年月日: $(date) *")
