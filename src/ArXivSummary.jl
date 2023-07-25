@@ -136,7 +136,7 @@ function write_result(list;file="Ion",output_latest="yes")
         end
         fn=open("./latest/$(file)_latest.txt","w")
         println(fn,"************************")
-        println(fn,"*    LATEST        *")
+        println(fn,"*    LATEST            *")
         println(fn,"* 取得年月日: $(date) *")
         println(fn,"************************")
         println(fn,"\n\n") 
