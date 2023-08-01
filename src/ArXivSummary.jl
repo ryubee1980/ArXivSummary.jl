@@ -71,7 +71,7 @@ function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
     #prompt =  "Say \"this is a test\""
     #prompt =  "あなたは統計物理，化学物理，ソフトマター物理に精通した研究者で、論文を簡潔に要約することに優れています。以下の論文を、タイトルと要約の2点をそれぞれ改行で分けて日本語で説明してください。要約は箇条書きで4-8行程度にまとめること。$(title) $(summary)"
 
-    prompt =  "You are a theoretical physicist having deep understanding of statistical physics, softmatter physics, chemical physics, and quantum field theory. The following title and abstract are taken from a paper that I want to understand. \n title: $(title) \n abstract: $(summary) \n Please summarize the abstract into itemized form of 4-8 lines. Please give me back (i) the itemized summary, (ii) the Japanese translation of the title, and (iii) the Japanese translation of the itemized summary."
+    prompt =  "You are a theoretical physicist having deep understanding of statistical physics, softmatter physics, chemical physics, and quantum field theory. You are also fluent in English and Japanese languages. The following title and abstract are taken from a paper that I want to understand. \n title: $(title) \n abstract: $(summary) \n Please summarize the abstract into itemized form of 4-8 lines. Please give me back (i) the itemized summary, (ii) the Japanese translation of the title, and (iii) the Japanese translation of the itemized summary."
 
     r = create_chat(
         secret_key, 
