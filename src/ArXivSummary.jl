@@ -57,7 +57,7 @@ function extract_data(entries_element)
     title,authors[1:end-3],summary,id,date
 end
 
-function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
+function getGPT(title,summary;KEY="OPENAI_API_KEY.txt",model="gpt-5.2")
 
     fn=open(KEY,"r")
         
@@ -67,7 +67,7 @@ function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
 
     
     secret_key=line
-    model = "gpt-5.2"
+    model = model
     #prompt =  "Say \"this is a test\""
     #prompt =  "あなたは統計物理，化学物理，ソフトマター物理に精通した研究者で、論文を簡潔に要約することに優れています。以下の論文を、タイトルと要約の2点をそれぞれ改行で分けて日本語で説明してください。要約は箇条書きで4-8行程度にまとめること。$(title) $(summary)"
 
@@ -85,7 +85,7 @@ function getGPT(title,summary;KEY="OPENAI_API_KEY.txt")
 end
 
 
-function main(;max=2,query="query_ion.txt",T_int=4)
+function main(;max=2,query="query_ion.txt",T_int=4,model="gpt-5.2")
     entries=getArXiv(max=max,query=query)
     num=length(entries)
     title=Array{String}(undef,num)
@@ -96,7 +96,7 @@ function main(;max=2,query="query_ion.txt",T_int=4)
     date=similar(title)
     for i in 1:num
         title[i],authors[i],summary[i],id[i],date[i]=extract_data(entries[i])
-        gpt[i]=getGPT(title[i],summary[i])
+        gpt[i]=getGPT(title[i],summary[i],model="gpt-5.2")
         sleep(T_int)
         #println(date[i])
         #println(title[i])
