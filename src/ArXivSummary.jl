@@ -8,7 +8,30 @@ using Dates
 # Write your package code here.
 
 
-function getArXiv(;max=2,query="query_ion.txt")
+function getArXiv(;max=2, query="query_ion.txt", retries=5)
+    line = open(readline, query)
+    ARXIV_QUERY = line
+    ARXIV_API_URL = "http://export.arxiv.org/api/query"
+    url = "$(ARXIV_API_URL)?search_query=$(ARXIV_QUERY)&sortBy=lastUpdatedDate&max_results=$(max)"
+
+    for k in 1:retries
+        try
+            r = request(:GET, url)
+            xml_string = parse_string(String(r.body))
+            xml = root(xml_string)
+            return get_elements_by_tagname(xml, "entry")
+        catch e
+            if occursin("429", sprint(showerror, e))
+                sleep(30 * k)   # 30, 60, 90, ... 秒待つ
+            else
+                rethrow(e)
+            end
+        end
+    end
+
+    error("arXiv API rate limit exceeded after retries.")
+end
+#= function getArXiv(;max=2,query="query_ion.txt")
     fn=open(query,"r")
         
     line=readline(fn)
@@ -28,7 +51,7 @@ function getArXiv(;max=2,query="query_ion.txt")
     xml=root(xml_string)
     
     entries=get_elements_by_tagname(xml,"entry")
-end
+end =#
 
 function extract_data(entries_element)
     ext=get_elements_by_tagname(entries_element,"title")
